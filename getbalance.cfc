@@ -120,7 +120,7 @@
 	
 		
 		<cfquery name="menuData" datasource="neo">
-			select * from neo order by value desc
+			select a.address, a.value from (select address, SUM(value) as value from neo group by (address)) as a where a.value > 0 order by a.value desc
 		</cfquery>
 				
 			
